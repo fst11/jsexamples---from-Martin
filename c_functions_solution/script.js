@@ -34,7 +34,10 @@ Hint:
 - validateInputs returns true if both choice and name are correctly filled
 */
 
-function validateInputs(saluation, user){
-var msg = "hi, " + saluation + " " + user;
-  return msg;
+function validateInputs(choice, name = "") {
+  if (choice == "")
+    return;
+  if (name == "")
+    return;
+  return;
 }

@@ -36,6 +36,44 @@
       <button class="mt-2 btn btn-success" onclick="ftnProcessName();">Submit</button>
 
     </form>
+    <!-- Radio buttons for meal preference -->
+    <div class="mb-3">
+      <label class="form-label"><strong>Meal Preference:</strong></label>
+      <!-- Radio for meal preference -->
+      <div class="form-check form-check-inline">
+        <!-- No preference -->
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealNone" value="None"
+            onclick="ftnRadioMeal('None');">
+          <label class="form-check-label" for="radioMeal">None</label>
+        </div>
+        <!-- Vegetarian -->
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealVeg" value="Vegetarian"
+            onclick="ftnRadioMeal('Vegetarian');">
+          <label class="form-check-label" for="radioMeal">Vegetarian</label>
+        </div>
+        <!-- Beef -->
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealBeef" value="Beef"
+            onclick="ftnRadioMeal('Beef');">
+          <label class="form-check-label" for="radioMeal">Beef</label>
+        </div>
+        <!-- Chicken -->
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealChicken" value="Chicken"
+            onclick="ftnRadioMeal('Chicken');">
+          <label class="form-check-label" for="radioMeal">Chicken</label>
+        </div>
+      </div>
+
+      <!-- display the selected option -->
+      <div class="d-block h-20">
+        <p id="displayPreference" class="text-success"></p>
+      </div>
+
+
+
   </main>
 
   <!-- include the javascript statements from index.js -->
@@ -49,7 +87,8 @@
 
     const selectList = document.getElementById("inputSelect");
     selectList.options[0] = new Option("Please select", "");
-    selectList.Option[0].selected = true;
+    // selectList.Option[0].selected = true; // ERROR
+    selectList.options[0].selected = true;   // CORRECTED
 
     // manual apprach of populating input
     // selectList.options[1] = new Option(arr[0], arr[0]);
@@ -57,10 +96,9 @@
     // selectList.options[3] = new Option(arr[2], arr[2]);
     // selectList.options[4] = new Option(arr[3], arr[3]);
 
-    // dynamci
+    // dynamic
     for (let index = 0; index < arr.length; index++) {
       selectList[index + 1] = new Option(arr[index], arr[index]);
-
     }
 
     // on click event handler from the button within the form, shall process the data before submission
@@ -69,10 +107,13 @@
       // TODO: Validate input before giving feedback to user.
       // console.log the data after processing
       const selectChoice = document.getElementById("inputSelect").value;
-      const uName = document.getElementById("inputName").value;
+      const uName = document.getElementById("inputName").value;    // CORRECTED
+
 
       // todo; Validate the input before giving feedback to user;
-      const validated = validateInputs();
+
+      // method 1
+      const validated = validateInputs(selectChoice, uName);
       if (validated) {
         const result = ftnGreeting(selectChoice, uName);
         alert(result);
@@ -80,11 +121,20 @@
         alert("You have not fill in the information");
       }
 
-      console.log(selectChoice);
-      console.log(uName);
+      // method 2
+      // constvalidated=validateInputs(selectChoice, uName);
+      // if (!validated)
+      //   return alert("You have not filled in the details.")
 
-      const result = ftnGreeting(selectChoice, uName);
-      alert(result);
+      // const result = ftnGreeting(selectChoice, uName);
+      // return alert(result);
+
+
+      // console.log(selectChoice);
+      // console.log(uName);
+
+      // const result = ftnGreeting(selectChoice, uName);
+      // alert(result);
     }
   </script>
 
