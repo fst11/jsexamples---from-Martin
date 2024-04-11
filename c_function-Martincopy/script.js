@@ -20,7 +20,7 @@ function ftnSalutation() {
 
 const ftnGreeting = (saluation, user) => {
   // write msg here
-  const msg = "Hi " + saluation + " " + user + ",";
+  const msg = "Hi " + saluation + " " + user + "," + "we have received your selection.";
   return msg;
 }
 
@@ -38,15 +38,16 @@ function validateInputs(choice, name = "") {
 
   // if choice is empty OR name is empty; return to the caller (Method 1)
   if (choice == "" || name == "")
-  return;
+    return;
+
   return true;
 
-// if choice is empty OR name is empty; return to the caller (Method 2)
-    // if (choice == "")
-    //   return;
-    // if (name == "")
-    //   return;
-    // return true;
+  // if choice is empty OR name is empty; return to the caller (Method 2)
+  // if (choice == "")
+  //   return;
+  // if (name == "")
+  //   return;
+  // return true;
 
 }
 // Refactor the function to use a switch statement

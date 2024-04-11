@@ -14,7 +14,7 @@
 
 <body>
   <main class="d-flex justify-content-center ">
-    <form class="m-3 rounded-2 border border-secondary p-3 w-50 bg-dark">
+    <form class="m-3 rounded-2 border border-secondary p-3 w-50 bg-light">
 
       <div class="form-floating mb-3">
 
@@ -32,47 +32,47 @@
 
       </div>
 
-      <!-- Button element to proces submission -->
-      <button class="mt-2 btn btn-success" onclick="ftnProcessName();">Submit</button>
 
-    </form>
-    <!-- Radio buttons for meal preference -->
-    <div class="mb-3">
-      <label class="form-label"><strong>Meal Preference:</strong></label>
-      <!-- Radio for meal preference -->
-      <div class="form-check form-check-inline">
-        <!-- No preference -->
+      <!-- Radio buttons for meal preference -->
+      <div class="mb-3">
+        <label class="form-label"><strong>Meal Preference:</strong></label>
+        <!-- Radio for meal preference -->
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealNone" value="None"
-            onclick="ftnRadioMeal('None');">
-          <label class="form-check-label" for="radioMeal">None</label>
-        </div>
-        <!-- Vegetarian -->
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealVeg" value="Vegetarian"
-            onclick="ftnRadioMeal('Vegetarian');">
-          <label class="form-check-label" for="radioMeal">Vegetarian</label>
-        </div>
-        <!-- Beef -->
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealBeef" value="Beef"
-            onclick="ftnRadioMeal('Beef');">
-          <label class="form-check-label" for="radioMeal">Beef</label>
-        </div>
-        <!-- Chicken -->
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealChicken" value="Chicken"
-            onclick="ftnRadioMeal('Chicken');">
-          <label class="form-check-label" for="radioMeal">Chicken</label>
+          <!-- No preference -->
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealNone" value="None"
+              onclick="ftnRadioMeal('None');">
+            <label class="form-check-label" for="radioMeal">None</label>
+          </div>
+          <!-- Vegetarian -->
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealVeg" value="Vegetarian"
+              onclick="ftnRadioMeal('Vegetarian');">
+            <label class="form-check-label" for="radioMeal">Vegetarian</label>
+          </div>
+          <!-- Beef -->
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealBeef" value="Beef"
+              onclick="ftnRadioMeal('Beef');">
+            <label class="form-check-label" for="radioMeal">Beef</label>
+          </div>
+          <!-- Chicken -->
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioMeal" id="radioMealChicken" value="Chicken"
+              onclick="ftnRadioMeal('Chicken');">
+            <label class="form-check-label" for="radioMeal">Chicken</label>
+          </div>
         </div>
       </div>
 
       <!-- display the selected option -->
-      <div class="d-block h-20">
+      <div class="d-block h-30">
         <p id="displayPreference" class="text-success"></p>
       </div>
 
-
+      <!-- Button element to proces submission -->
+      <button class="mt-2 btn btn-success" onclick="ftnProcessName();">Submit</button>
+    </form>
 
   </main>
 
@@ -114,22 +114,45 @@
 
       // method 1
       const validated = validateInputs(selectChoice, uName);
-      if (validated) {
-        const result = ftnGreeting(selectChoice, uName);
-        alert(result);
-      } else {
-        alert("You have not fill in the information");
+      // check if meal preference is selected
+
+      const mealPreference = document.getElementsByName("inlineRadioMeal")
+
+      // create a boolean, set the mealcheck to false (default)
+      let mealSelected = false
+      // loop throught the mealPreference "radio buttons"
+      // when the radio button is selected, set the mealSelected to true and break out of the loop
+      for (let index = 0; index < mealPreference.length; index++) {
+        if (mealPreference[index].checked) {
+          mealSelected = true;
+        }
       }
+
+      // if (validated) {
+      //   const result = ftnGreeting(selectChoice, uName);
+      //   alert(result);
+      // } else {
+      //   alert("You have not fill in the information");
+      // }
 
       // method 2
       // constvalidated=validateInputs(selectChoice, uName);
-      // if (!validated)
+      // if (!validated || !mealSelected)
       //   return alert("You have not filled in the details.")
 
       // const result = ftnGreeting(selectChoice, uName);
       // return alert(result);
 
+      // method 3
+      constvalidated = validateInputs(selectChoice, uName);
+      if (validated && mealSelected){
+        // return alert("You have not filled in the details.")
 
+        const result = ftnGreeting(selectChoice, uName);
+      return alert(result);
+
+      return alert("You have not filled in the details.")}
+      
       // console.log(selectChoice);
       // console.log(uName);
 
